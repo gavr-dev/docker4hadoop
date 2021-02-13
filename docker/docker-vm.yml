@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  krb5:
+    image: krb5:0.1
+    build:
+      context: krb5
+  core:
+    image: core:0.1
+    build:
+      context: core
