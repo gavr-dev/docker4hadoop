@@ -8,3 +8,19 @@ services:
     image: core:0.1
     build:
       context: core
+  hadoop-base:
+    image: hadoop-base:2.6
+    build:
+      context: hadoop/base
+  hadoop-namenode:
+    image: hadoop-namenode:2.6
+    build:
+      context: hadoop/namenode
+    depends_on:
+      - hadoop-base
+  hadoop-datanode:
+    image: hadoop-datanode:2.6
+    build:
+      context: hadoop/datanode
+    depends_on:
+      - hadoop-base

@@ -29,3 +29,6 @@ RUN echo -e "123456\n123456\n" | passwd root \
     && ssh-keygen -f "/root/.ssh/id_rsa" -q -P "" \
     && cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys \
     && chmod 600 ~/.ssh/*
+
+COPY ./wait-for-it.sh /usr/bin
+RUN chmod +x /usr/bin/wait-for-it.sh && dos2unix /usr/bin/wait-for-it.sh

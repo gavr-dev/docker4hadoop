@@ -1,0 +1,58 @@
+version: '3.7'
+x-extra_hosts:
+  &default-extra_hosts
+  - "krb5.lc.cluster:172.10.0.2"
+  - "hdfs-nn.lc.cluster:172.10.0.3"
+  - "hdfs-dn.lc.cluster:172.10.0.4"
+services:
+  krb5:
+    image: krb5:0.1
+    container_name: krb5
+    hostname: krb5.lc.cluster
+    extra_hosts: *default-extra_hosts
+    privileged: true
+    tty: true
+    stdin_open: true
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.2
+  hdfs-nn:
+    image: hadoop-namenode:2.6
+    container_name: hdfs-nn
+    hostname: hdfs-nn.lc.cluster
+    extra_hosts: *default-extra_hosts
+    privileged: true
+    ports:
+      - "5045:5005"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - krb5
+    environment:
+      - HDFS_CONF_dfs_webhdfs_enabled=false
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.3
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop-2.6.5/logs/hadoop.log"
+  hdfs-dn:
+    image: hadoop-datanode:2.6
+    container_name: hdfs-dn
+    hostname: hdfs-dn.lc.cluster
+    extra_hosts: *default-extra_hosts
+    privileged: true
+    ports:
+      - "5055:5005"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - hdfs-nn
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.4
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop-2.6.5/logs/hadoop.log"
+networks:
+  cl-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.10.0.0/16
