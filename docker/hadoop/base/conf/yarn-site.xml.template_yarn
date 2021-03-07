@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+ <property>
+    <name>yarn.resourcemanager.keytab</name>
+    <value>/opt/hadoop-2.6.5/keytabs/yarn.keytab</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.principal</name>
+    <value>yarn/_HOST@LC.CLUSTER</value>
+</property>
+<property>
+    <name>yarn.nodemanager.keytab</name>
+    <value>/opt/hadoop-2.6.5/keytabs/yarn.keytab</value>
+</property>
+<property>
+    <name>yarn.nodemanager.principal</name>
+    <value>yarn/_HOST@LC.CLUSTER</value>
+</property>
+<property>
+    <name>yarn.nodemanager.container-executor.class</name>
+    <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
+</property>
+<property>
+  <name>yarn.nodemanager.linux-container-executor.group</name>
+  <value>yarn</value>
+</property>
+<property>
+    <name>yarn.acl.enable</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+</property>
+<property>
+    <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+<property>
+    <name>yarn.timeline-service.keytab</name>
+    <value>/opt/hadoop-2.6.5/keytabs/yarn.keytab</value>
+</property>
+<property>
+    <name>yarn.timeline-service.principal</name>
+    <value>yarn/_HOST@LC.CLUSTER</value>
+</property>
+<property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.address</name>
+    <value>resourcemanager.lc.cluster:8032</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>resourcemanager.lc.cluster:8031</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>resourcemanager.lc.cluster:8033</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>resourcemanager.lc.cluster:8030</value>
+</property>
+<property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.log.server.url</name>
+    <value>http://historyserver.lc.cluster:8188/applicationhistory/logs/</value>
+</property>
+<property>
+    <name>yarn.timeline-service.webapp.address</name>
+    <value>historyserver.lc.cluster:8188</value>
+</property>
+<property>
+    <name>yarn.timeline-service.webapp.https.address</name>
+    <value>historyserver.lc.cluster:8190</value>
+</property>
+<property>
+    <name>yarn.timeline-service.address</name>
+    <value>historyserver.lc.cluster</value>
+</property>
+<property>
+    <name>yarn.timeline-service.http-authentication.type</name>
+    <value>kerberos</value>
+</property>
+<property>
+    <name>yarn.timeline-service.http-authentication.kerberos.principal</name>
+    <value>yarn/_HOST@LC.CLUSTER</value>
+</property>
+<property>
+    <name>yarn.timeline-service.http-authentication.kerberos.keytab</name>
+    <value>/opt/hadoop-2.6.5/keytabs/yarn.keytab</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.recovery.enabled</name>
+    <value>false</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.store.class</name>
+    <value>org.apache.hadoop.yarn.server.resourcemanager.recovery.FileSystemRMStateStore</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.fs.state-store.uri</name>
+    <value>/rmstate</value>
+</property>
+<property>
+    <name>yarn.nodemanager.log-dirs</name>
+    <value>/tmp/hadoop-yarn/container-logs</value>
+</property>
+<property>
+    <name>yarn.timeline-service.enabled</name>
+    <value>false</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>resourcemanager.lc.cluster</value>
+</property>
+<property>
+    <name>yarn.timeline-service.hostname</name>
+    <value>historyserver.lc.cluster</value>
+</property>
+<property>
+    <name>yarn.timeline-service.generic-application-history.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.nodemanager.env-whitelist</name>
+    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME</value>
+</property>
+<property>
+    <name>yarn.timeline-service.http-cross-origin.enabled</name>
+    <value>true</value>
+</property>
+<property>
+   <name>yarn.nodemanager.disk-health-checker.enable</name>
+   <value>false</value>
+</property>
+<property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+</property>
+</configuration>
