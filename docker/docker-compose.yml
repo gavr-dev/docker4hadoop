@@ -4,6 +4,9 @@ x-extra_hosts:
   - "krb5.lc.cluster:172.10.0.2"
   - "hdfs-nn.lc.cluster:172.10.0.3"
   - "hdfs-dn.lc.cluster:172.10.0.4"
+  - "hive-server.lc.cluster:172.10.0.5"
+  - "hive-metastore.lc.cluster:172.10.0.6"
+  - "hive-metastore-db.lc.cluster:172.10.0.7"
 services:
   krb5:
     image: krb5:0.1
@@ -50,6 +53,60 @@ services:
       cl-net:
         ipv4_address: 172.10.0.4
     command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop-2.6.5/logs/hadoop.log"
+  hive-server:
+    image: hadoop-hive:2.3.2
+    hostname: hive-server.lc.cluster
+    container_name: hive-server
+    extra_hosts: *default-extra_hosts
+    depends_on:
+      - krb5
+      - hive-metastore
+    privileged: true
+    tty: true
+    stdin_open: true
+    command: "wait-for-it.sh hdfs-nn.lc.cluster:8020 -- /usr/local/bin/run.sh hiveserver2"
+    ports:
+      - "5155:5005"
+    env_file:
+      - ./hadoop/hive/hive.env
+    environment:
+      SERVICE_PRECONDITION: "hive-metastore.lc.cluster:9083"
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.5
+  hive-metastore:
+    image: hadoop-hive:2.3.2
+    hostname: hive-metastore.lc.cluster
+    container_name: hive-metastore
+    extra_hosts: *default-extra_hosts
+    depends_on:
+      - krb5
+    privileged: true
+    tty: true
+    stdin_open: true
+    command: "wait-for-it.sh hdfs-nn.lc.cluster:8020 -- /usr/local/bin/run.sh hivemetastore"
+    ports:
+      - "5105:5005"
+    env_file:
+      - ./hadoop/hive/hive.env
+    environment:
+      SERVICE_PRECONDITION: "hive-metastore-db.lc.cluster:5432"
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.6
+  hive-metastore-db:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+    hostname: hive-metastore-db.lc.cluster
+    container_name: hive-metastore-db
+    ports:
+      - "5433:5432"
+    extra_hosts: *default-extra_hosts
+    privileged: true
+    tty: true
+    stdin_open: true
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.7
 networks:
   cl-net:
     ipam:

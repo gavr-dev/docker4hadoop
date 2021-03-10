@@ -24,3 +24,7 @@ services:
       context: hadoop/datanode
     depends_on:
       - hadoop-base
+  hadoop-hive:
+    image: hadoop-hive:2.3.2
+    build:
+      context: hadoop/hive

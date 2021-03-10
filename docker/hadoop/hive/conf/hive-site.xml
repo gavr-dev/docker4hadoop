@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+<property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://hive-metastore.lc.cluster:9083</value>
+</property>
+<property>
+    <name>hive.metastore.kerberos.keytab.file</name>
+    <value>/opt/hadoop-2.6.5/keytabs/hive.keytab</value>
+</property>
+<property>
+    <name>hive.metastore.sasl.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>hive.server2.authentication</name>
+    <value>KERBEROS</value>
+</property>
+<property>
+    <name>datanucleus.autoCreateSchema</name>
+    <value>false</value>
+</property>
+<property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:postgresql://hive-metastore-db.lc.cluster:5432/metastore</value>
+</property>
+<property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.postgresql.Driver</value>
+</property>
+<property>
+    <name>hive.server2.authentication.kerberos.keytab</name>
+    <value>/opt/hadoop-2.6.5/keytabs/hive.keytab</value>
+</property>
+<property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>hive</value>
+</property>
+<property>
+    <name>hive.server2.authentication.kerberos.principal</name>
+    <value>hive/hive-server.lc.cluster@LC.CLUSTER</value>
+</property>
+<property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>hive</value>
+</property>
+<property>
+    <name>hive.metastore.kerberos.principal</name>
+    <value>hive/hive-metastore.lc.cluster@LC.CLUSTER</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.principal</name>
+  <value>yarn/_HOST@LC.CLUSTER</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.keytab</name>
+    <value>/opt/hadoop-2.6.5/keytabs/yarn.keytab</value>
+</property>
+<property>
+    <name>hive.server2.enable.doAs</name>
+    <value>true</value>
+</property>
+</configuration>
