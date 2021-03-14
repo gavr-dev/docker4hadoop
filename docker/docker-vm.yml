@@ -28,3 +28,18 @@ services:
     image: hadoop-hive:2.3.2
     build:
       context: hadoop/hive
+  hadoop-nodemanager:
+    image: hadoop-nodemanager:2.0.0
+    build:
+      context: hadoop/hive
+      dockerfile: nodemanager/Dockerfile
+  hadoop-resourcemanager:
+    image: hadoop-resourcemanager:2.0.0
+    build:
+      context: hadoop/hive
+      dockerfile: resourcemanager/Dockerfile
+  hadoop-historyserver:
+    image: hadoop-historyserver:2.0.0
+    build:
+      context: hadoop/hive
+      dockerfile: historyserver/Dockerfile
