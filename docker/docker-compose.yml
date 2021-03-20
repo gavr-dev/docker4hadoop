@@ -35,6 +35,7 @@ services:
     depends_on:
       - krb5
     environment:
+      - JAVA_OPTS=-Xms20m -Xmx128m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
       - HDFS_CONF_dfs_webhdfs_enabled=false
     networks:
       cl-net:
@@ -52,6 +53,8 @@ services:
     stdin_open: true
     depends_on:
       - hdfs-nn
+    environment:
+      - JAVA_OPTS=-Xms20m -Xmx128m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
     networks:
       cl-net:
         ipv4_address: 172.10.0.4

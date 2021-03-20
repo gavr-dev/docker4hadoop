@@ -12,6 +12,8 @@ services:
     image: hadoop-base:2.6
     build:
       context: hadoop/base
+    depends_on:
+      - core
   hadoop-namenode:
     image: hadoop-namenode:2.6
     build:
@@ -28,18 +30,26 @@ services:
     image: hadoop-hive:2.3.2
     build:
       context: hadoop/hive
+    depends_on:
+      - hadoop-base
   hadoop-nodemanager:
     image: hadoop-nodemanager:2.0.0
     build:
       context: hadoop/hive
       dockerfile: nodemanager/Dockerfile
+    depends_on:
+      - hadoop-base
   hadoop-resourcemanager:
     image: hadoop-resourcemanager:2.0.0
     build:
       context: hadoop/hive
       dockerfile: resourcemanager/Dockerfile
+    depends_on:
+      - hadoop-base
   hadoop-historyserver:
     image: hadoop-historyserver:2.0.0
     build:
       context: hadoop/hive
       dockerfile: historyserver/Dockerfile
+    depends_on:
+      - hadoop-base
