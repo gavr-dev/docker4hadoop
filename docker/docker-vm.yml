@@ -53,3 +53,9 @@ services:
       dockerfile: historyserver/Dockerfile
     depends_on:
       - hadoop-base
+  clients:
+    image: clients:2.6
+    build:
+      context: hadoop/clients
+    depends_on:
+      - hadoop-base

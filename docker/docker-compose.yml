@@ -10,6 +10,7 @@ x-extra_hosts:
   - "nodemanager.lc.cluster:172.10.0.8"
   - "resourcemanager.lc.cluster:172.10.0.9"
   - "historyserver.lc.cluster:172.10.0.10"
+  - "clients.lc.cluster:172.10.0.11"
 services:
   krb5:
     image: krb5:0.1
@@ -128,7 +129,7 @@ services:
       - ./hadoop/hive/hive.env
     networks:
       cl-net:
-        ipv4_address: 172.10.0.20
+        ipv4_address: 172.10.0.8
     ports:
       - "8042:8042"
   resourcemanager:
@@ -149,7 +150,7 @@ services:
       - "8088:8088"
     networks:
       cl-net:
-        ipv4_address: 172.10.0.21
+        ipv4_address: 172.10.0.9
   historyserver:
     image: hadoop-historyserver:2.0.0
     hostname: historyserver.lc.cluster
@@ -167,7 +168,21 @@ services:
     command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- /usr/local/bin/run.sh"
     networks:
       cl-net:
-        ipv4_address: 172.10.0.22
+        ipv4_address: 172.10.0.10
+  clients:
+    image: clients:2.6
+    container_name: clients
+    hostname: clients.lc.cluster
+    extra_hosts: *default-extra_hosts
+    privileged: true
+    tty: true
+    stdin_open: true
+    depends_on:
+      - krb5
+    networks:
+      cl-net:
+        ipv4_address: 172.10.0.11
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /dev/null"
 networks:
   cl-net:
     ipam:
