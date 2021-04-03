@@ -1,19 +1,19 @@
 FROM hadoop-base:2.6
 
-# Install Hadoop CLI
-RUN mkdir /opt/hadoop-cli
-COPY hdfs /opt/hadoop-cli/
-RUN find /opt/hadoop-cli/bin -type f -print0 | xargs -0 dos2unix \
-    && find /opt/hadoop-cli/etc -type f -print0 | xargs -0 dos2unix \
-    && find /opt/hadoop-cli/libexec -type f -print0 | xargs -0 dos2unix \
-    && find /opt/hadoop-cli/sbin -type f -print0 | xargs -0 dos2unix \
-    && chmod -R 755 /opt/hadoop-cli
+ENV HIVE_VERSION=2.3.2
 
-RUN echo "export HADOOP_CLI_HOME=/opt/hadoop-cli" >> ~/.bashrc \
-    && echo "export PATH=\$PATH:\$HADOOP_CLI_HOME/sbin:\$HADOOP_CLI_HOME/bin" >> ~/.bashrc
+# Install Hive CLI
+WORKDIR /opt
+RUN wget --no-check-certificate https://archive.apache.org/dist/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz && \
+	tar -xzvf apache-hive-$HIVE_VERSION-bin.tar.gz && \
+	mv apache-hive-$HIVE_VERSION-bin hive && \
+    rm -rf apache-hive-$HIVE_VERSION-bin.tar.gz
 
+ENV HIVE_HOME=/opt/hive
+ENV PATH $HIVE_HOME/bin/:$PATH
+
+# Custom scripts
 RUN mkdir -p /opt/scripts
 
 ADD ./run.sh /usr/local/bin/run.sh
 RUN chmod a+x /usr/local/bin/run.sh && dos2unix /usr/local/bin/run.sh
-#CMD ["/run.sh"]

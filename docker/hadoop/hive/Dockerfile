@@ -1,6 +1,5 @@
 FROM hadoop-base:2.6
 
-
 ENV USER=root
 ENV HIVE_VERSION=2.3.2
 ENV HIVE_HOME /opt/hive
