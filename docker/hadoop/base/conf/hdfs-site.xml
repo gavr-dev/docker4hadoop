@@ -31,24 +31,24 @@
     <!-- Base NameNode params -->
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/namenode/name</value>
+        <value>file:///opt/hadoop/data/namenode/name</value>
         <final>true</final>
     </property>
     <property>
         <name>dfs.namenode.edits.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/namenode/edits</value>
+        <value>file:///opt/hadoop/data/namenode/edits</value>
         <final>true</final>
     </property>
     <property>
         <name>dfs.namenode.data.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/namenode/data</value>
+        <value>file:///opt/hadoop/data/namenode/data</value>
         <final>true</final>
     </property>
 
     <!-- Kerberos params -->
     <property>
         <name>dfs.namenode.keytab.file</name>
-        <value>/opt/hadoop-2.6.5/keytabs/hdfs.keytab</value>
+        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.namenode.kerberos.principal</name>
@@ -60,7 +60,7 @@
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.keytab</name>
-        <value>/opt/hadoop-2.6.5/keytabs/hdfs.keytab</value>
+        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.principal</name>
@@ -70,12 +70,12 @@
     <!-- Base DataNode params -->
     <property>
         <name>dfs.datanode.name.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/datanode/name</value>
+        <value>file:///opt/hadoop/data/datanode/name</value>
         <final>true</final>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/datanode/data</value>
+        <value>file:///opt/hadoop/data/datanode/data</value>
         <final>true</final>
     </property>
     <property>
@@ -92,7 +92,7 @@
     <!-- Kerberos params -->
     <property>
         <name>dfs.datanode.keytab.file</name>
-        <value>/opt/hadoop-2.6.5/keytabs/hdfs.keytab</value>
+        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.datanode.kerberos.principal</name>
@@ -104,7 +104,7 @@
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.keytab</name>
-        <value>/opt/hadoop-2.6.5/keytabs/hdfs.keytab</value>
+        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.principal</name>

@@ -1,7 +1,5 @@
 FROM hadoop-base:2.6
 
-ENV USER=root
-ENV HIVE_VERSION=2.3.2
 ENV HIVE_HOME /opt/hive
 ENV PATH $HIVE_HOME/bin:$PATH
 
@@ -18,6 +16,7 @@ RUN wget --no-check-certificate https://archive.apache.org/dist/hive/hive-$HIVE_
 
 RUN mkdir -p /tmp/hive_conf
 COPY ./conf/* /tmp/hive_conf/
+RUN dos2unix /tmp/hive_conf/*
 
 COPY ./run.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/run.sh && dos2unix /usr/local/bin/run.sh

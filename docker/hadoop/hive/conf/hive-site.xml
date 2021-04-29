@@ -7,7 +7,7 @@
 </property>
 <property>
     <name>hive.metastore.kerberos.keytab.file</name>
-    <value>/opt/hadoop-2.6.5/keytabs/hive.keytab</value>
+    <value>/opt/hadoop/keytabs/hive.keytab</value>
 </property>
 <property>
     <name>hive.metastore.sasl.enabled</name>
@@ -31,7 +31,7 @@
 </property>
 <property>
     <name>hive.server2.authentication.kerberos.keytab</name>
-    <value>/opt/hadoop-2.6.5/keytabs/hive.keytab</value>
+    <value>/opt/hadoop/keytabs/hive.keytab</value>
 </property>
 <property>
     <name>javax.jdo.option.ConnectionPassword</name>
@@ -55,7 +55,7 @@
 </property>
 <property>
     <name>yarn.resourcemanager.keytab</name>
-    <value>/opt/hadoop-2.6.5/keytabs/yarn.keytab</value>
+    <value>/opt/hadoop/keytabs/yarn.keytab</value>
 </property>
 <property>
     <name>hive.server2.enable.doAs</name>

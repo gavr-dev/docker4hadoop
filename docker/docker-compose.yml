@@ -41,7 +41,7 @@ services:
     networks:
       cl-net:
         ipv4_address: 172.10.0.3
-    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop-2.6.5/logs/hadoop.log"
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop/logs/hadoop.log"
   hdfs-dn:
     image: hadoop-datanode:2.6
     container_name: hdfs-dn
@@ -59,7 +59,7 @@ services:
     networks:
       cl-net:
         ipv4_address: 172.10.0.4
-    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop-2.6.5/logs/hadoop.log"
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /opt/hadoop/logs/hadoop.log"
   hive-server:
     image: hadoop-hive:2.3.2
     hostname: hive-server.lc.cluster
@@ -71,7 +71,6 @@ services:
     privileged: true
     tty: true
     stdin_open: true
-    command: "wait-for-it.sh hdfs-nn.lc.cluster:8020 -- /usr/local/bin/run.sh hiveserver2"
     ports:
       - "5155:5005"
     env_file:
@@ -81,6 +80,7 @@ services:
     networks:
       cl-net:
         ipv4_address: 172.10.0.5
+    command: sh -c "wait-for-it.sh hive-metastore.lc.cluster:9083 -- /usr/local/bin/run.sh hiveserver2"
   hive-metastore:
     image: hadoop-hive:2.3.2
     hostname: hive-metastore.lc.cluster
@@ -91,7 +91,6 @@ services:
     privileged: true
     tty: true
     stdin_open: true
-    command: "wait-for-it.sh hdfs-nn.lc.cluster:8020 -- /usr/local/bin/run.sh hivemetastore"
     ports:
       - "5105:5005"
     env_file:
@@ -101,6 +100,7 @@ services:
     networks:
       cl-net:
         ipv4_address: 172.10.0.6
+    command: sh -c "wait-for-it.sh hdfs-nn.lc.cluster:8020 -- /usr/local/bin/run.sh hivemetastore"
   hive-metastore-db:
     image: bde2020/hive-metastore-postgresql:2.3.0
     hostname: hive-metastore-db.lc.cluster
@@ -124,7 +124,6 @@ services:
     privileged: true
     tty: true
     stdin_open: true
-    command: "wait-for-it.sh krb5.lc.cluster:22 -- /usr/local/bin/run.sh"
     env_file:
       - ./hadoop/hive/hive.env
     networks:
@@ -132,6 +131,7 @@ services:
         ipv4_address: 172.10.0.8
     ports:
       - "8042:8042"
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- /usr/local/bin/run.sh"
   resourcemanager:
     image: hadoop-resourcemanager:2.0.0
     hostname: resourcemanager.lc.cluster
@@ -143,7 +143,6 @@ services:
     privileged: true
     tty: true
     stdin_open: true
-    command: "wait-for-it.sh hdfs-dn.lc.cluster:50475 --  -- /usr/local/bin/run.sh"
     env_file:
       - ./hadoop/hive/hive.env
     ports:
@@ -151,6 +150,7 @@ services:
     networks:
       cl-net:
         ipv4_address: 172.10.0.9
+    command: sh -c "wait-for-it.sh hdfs-dn.lc.cluster:50475 -- /usr/local/bin/run.sh"
   historyserver:
     image: hadoop-historyserver:2.0.0
     hostname: historyserver.lc.cluster
@@ -165,10 +165,10 @@ services:
       - ./hadoop/hive/hive.env
     ports:
       - "8188:8188"
-    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- /usr/local/bin/run.sh"
     networks:
       cl-net:
         ipv4_address: 172.10.0.10
+    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- /usr/local/bin/run.sh"
   clients:
     image: clients:2.6
     container_name: clients
@@ -182,7 +182,7 @@ services:
     networks:
       cl-net:
         ipv4_address: 172.10.0.11
-    command: sh -c "wait-for-it.sh krb5.lc.cluster:22 -- run.sh && tail -f /dev/null"
+    command: sh -c "wait-for-it.sh hdfs-nn.lc.cluster:8020 -- run.sh && tail -f /dev/null"
 networks:
   cl-net:
     ipam:

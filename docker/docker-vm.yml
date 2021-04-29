@@ -56,6 +56,7 @@ services:
   clients:
     image: clients:2.6
     build:
-      context: hadoop/clients
+      context: hadoop
+      dockerfile: clients/Dockerfile
     depends_on:
       - hadoop-base

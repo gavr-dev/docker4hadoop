@@ -1,17 +1,22 @@
 FROM core:0.1
+ENV USER=root
 
 ENV HADOOP_VERSION 2.6.5
+ENV HIVE_VERSION=2.3.2
+ENV SPARK_VERSION=3.1.1
+
 ENV HADOOP_URL https://archive.apache.org/dist/hadoop/core/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
-RUN echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" | tee -a /etc/profile && source /etc/profile && echo $JAVA_HOME
-ENV JAVA_HOME=/etc/alternatives/jre/
-ENV HADOOP_HOME=/opt/hadoop-$HADOOP_VERSION
+ENV HADOOP_HOME=/opt/hadoop
 ENV HADOOP_CONF_DIR=/etc/hadoop
 ENV HADOOP_DATA_DIR=$HADOOP_HOME/data
+ENV YARN_HOME=$HADOOP_HOME
+ENV PATH $HADOOP_HOME/bin/:$PATH
+
 ENV MULTIHOMED_NETWORK=1
 ENV HADOOP_ROOT_LOGGER=INFO,console
-ENV USER=root
-ENV PATH $HADOOP_HOME/bin/:$PATH
-ENV YARN_HOME=$HADOOP_HOME
+
+RUN echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" | tee -a /etc/profile && source /etc/profile && echo $JAVA_HOME
+ENV JAVA_HOME=/etc/alternatives/jre/
 
 RUN set -x \
     && curl -fkSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \

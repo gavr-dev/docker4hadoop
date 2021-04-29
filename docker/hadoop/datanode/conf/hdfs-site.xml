@@ -28,12 +28,12 @@
     <!-- Base DataNode params -->
     <property>
         <name>dfs.datanode.name.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/datanode/name</value>
+        <value>file:///opt/hadoop/data/datanode/name</value>
         <final>true</final>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>file:///opt/hadoop-2.6.5/data/datanode/data</value>
+        <value>file:///opt/hadoop/data/datanode/data</value>
         <final>true</final>
     </property>
     <property>
@@ -50,7 +50,7 @@
     <!-- Kerberos params -->
     <property>
         <name>dfs.datanode.keytab.file</name>
-        <value>/opt/hadoop-2.6.5/keytabs/hdfs.keytab</value>
+        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.datanode.kerberos.principal</name>
@@ -62,7 +62,7 @@
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.keytab</name>
-        <value>/opt/hadoop-2.6.5/keytabs/hdfs.keytab</value>
+        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.principal</name>

@@ -37,7 +37,7 @@ adduser spark
 echo -e "123456\n123456\n" | passwd spark
 chown spark:spark $HADOOP_HOME/keytabs/spark.keytab
 
-sshpass -p '123456' scp -o StrictHostKeyChecking=no root@krb5.lc.cluster:/opt/*.keytab /opt/hadoop-2.6.5/keytabs/
+sshpass -p '123456' scp -o StrictHostKeyChecking=no root@krb5.lc.cluster:/opt/*.keytab /opt/hadoop/keytabs/
 
 
 keytool -genkey -noprompt -dname "CN=$HOSTNAME, OU=AA, O=AA, L=AA, S=AA, C=AA" -alias "$HOSTNAME" -keystore "keystore.jks" -storepass "12345678" -keypass "12345678"
