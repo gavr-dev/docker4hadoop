@@ -10,8 +10,8 @@ ENV HIVE_HOME=/opt/hive
 ENV PATH $HIVE_HOME/bin/:$PATH
 
 RUN mkdir -p /etc/hive/conf
-COPY ./hive/conf/*-site.xml /etc/hive/conf/
 COPY ./base/conf/*-site.xml /etc/hive/conf/
+COPY ./hive/conf/*-site.xml /etc/hive/conf/
 
 # Install Spark-shell
 RUN wget --no-check-certificate https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop2.7.tgz && \
@@ -23,8 +23,8 @@ ENV PATH $SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 
 RUN mkdir -p /etc/spark/conf
 COPY ./base/conf/*-site.xml /etc/spark/conf/
-COPY ./spark/conf/* /etc/spark/conf/
 COPY ./hive/conf/*-site.xml /etc/spark/conf/
+COPY ./spark/conf/* /etc/spark/conf/
 
 ENV SPARK_CONF_DIR=/etc/spark/conf
 ENV HADOOP_CONF_DIR=/etc/spark/conf

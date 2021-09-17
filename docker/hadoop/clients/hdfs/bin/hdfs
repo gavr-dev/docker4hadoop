@@ -206,7 +206,7 @@ export CLASSPATH=$CLASSPATH
 
 HADOOP_OPTS="$HADOOP_OPTS -Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,NullAppender}"
 
-# Check to see if we should start a secure datanode
+# Check to see if we should start.sh a secure datanode
 if [ "$starting_secure_dn" = "true" ]; then
   if [ "$HADOOP_PID_DIR" = "" ]; then
     HADOOP_SECURE_DN_PID="/tmp/hadoop_secure_dn.pid"

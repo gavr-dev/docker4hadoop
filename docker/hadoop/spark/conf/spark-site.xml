@@ -19,7 +19,7 @@
     </property>
     <property>
         <name>spark.yarn.jars</name>
-        <value>/opt/it/lib/*.jar</value>
+        <value>/opt/spark/jars/*.jar</value>
     </property>
     <property>
         <name>spark.yarn.access.hadoopFileSystems</name>

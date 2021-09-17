@@ -177,6 +177,10 @@ services:
     privileged: true
     tty: true
     stdin_open: true
+    volumes:
+      - type: bind
+        source: ./hadoop/clients/scripts
+        target: /opt/scripts
     depends_on:
       - krb5
     networks:

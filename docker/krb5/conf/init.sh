@@ -24,6 +24,12 @@ kadmin -w 123456 -q "ktadd -k /opt/keytabs/dn.keytab dn@LC.CLUSTER"
 kadmin -w 123456 -q "addprinc -randkey recon"
 kadmin -w 123456 -q "ktadd -k /opt/keytabs/recon.keytab recon@LC.CLUSTER"
 
+kadmin -w 123456 -q "addprinc -pw 123456 user1@LC.CLUSTER"
+kadmin -w 123456 -q "ktadd -k /opt/keytabs/user1.keytab user1@LC.CLUSTER"
+
+kadmin -w 123456 -q "addprinc -pw 123456 user2@LC.CLUSTER"
+kadmin -w 123456 -q "ktadd -k /opt/keytabs/user2.keytab user2@LC.CLUSTER"
+
 /usr/sbin/sshd
 echo -e "123456\n123456\n" | passwd root
 /usr/sbin/sshd

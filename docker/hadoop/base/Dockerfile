@@ -3,7 +3,7 @@ ENV USER=root
 
 ENV HADOOP_VERSION 2.6.5
 ENV HIVE_VERSION=2.3.2
-ENV SPARK_VERSION=3.1.1
+ENV SPARK_VERSION=2.4.7
 
 ENV HADOOP_URL https://archive.apache.org/dist/hadoop/core/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 ENV HADOOP_HOME=/opt/hadoop

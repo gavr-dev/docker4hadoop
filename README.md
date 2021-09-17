@@ -3,24 +3,24 @@ Running a Hadoop cluster locally is a labor-intensive process, especially with K
 
 ## Building Images
 ```shell
-docker-compose -f docker-vm.yml build krb5 core hadoop-base hadoop-namenode hadoop-datanode hadoop-hive hadoop-nodemanager hadoop-resourcemanager hadoop-historyserver 
+docker-compose -f docker-vm.yml build krb5 core hadoop-base hadoop-namenode hadoop-datanode hadoop-hive hadoop-nodemanager hadoop-resourcemanager hadoop-historyserver clients 
 ```
 ## Launch Options
 ### HDFS Only
 ```shell
-docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn
+docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn clients
 ```
 ### HDFS & Hive
 ```shell
-docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn hive-server hive-metastore hive-metastore-db
+docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn hive-server hive-metastore hive-metastore-db clients
 ```
 ### HDFS & Spark
 ```shell
-docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn resourcemanager nodemanager historyserver
+docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn resourcemanager nodemanager historyserver clients
 ```
 ### HDFS, Hive & Spark
 ```shell
-docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn hive-server hive-metastore hive-metastore-db resourcemanager nodemanager historyserver clients
+docker-compose -f docker-compose.yml up -d krb5 hdfs-nn hdfs-dn hive-server hive-metastore hive-metastore-db resourcemanager nodemanager historyserver clients 
 ```
 
 ## Commands

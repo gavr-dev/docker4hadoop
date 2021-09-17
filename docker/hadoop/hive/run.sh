@@ -1,7 +1,7 @@
 #!/bin/bash
 
 launch_hiveserver2() {
-	su hdfs -c "kinit -k -t /opt/hadoop/keytabs/hdfs.keytab hdfs/hive-server.lc.cluster@LC.CLUSTER"
+	su hdfs -c "kinit -k -t /opt/keytabs/hdfs.keytab hdfs/hive-server.lc.cluster@LC.CLUSTER"
 	su hdfs -c "hadoop fs -mkdir -p    /tmp/hadoop-yarn/staging"
 	su hdfs -c "hadoop fs -mkdir -p    /user/hive/warehouse"
 	su hdfs -c "hadoop fs -chown hive:hive /user/hive/warehouse"

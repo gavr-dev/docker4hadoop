@@ -50,7 +50,7 @@
     <!-- Kerberos params -->
     <property>
         <name>dfs.datanode.keytab.file</name>
-        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
+        <value>/opt/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.datanode.kerberos.principal</name>
@@ -62,7 +62,7 @@
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.keytab</name>
-        <value>/opt/hadoop/keytabs/hdfs.keytab</value>
+        <value>/opt/keytabs/hdfs.keytab</value>
     </property>
     <property>
         <name>dfs.web.authentication.kerberos.principal</name>
