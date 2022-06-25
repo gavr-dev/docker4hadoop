@@ -4,9 +4,10 @@
 <a href="https://github.com/gavr-dev/docker4hadoop/tags" alt="Tag"><img src="https://img.shields.io/github/v/tag/gavr-dev/docker4hadoop"/></a>
 <a href="https://github.com/gavr-dev/docker4hadoop/blob/main/LICENSE" alt="GPLv3 licensed"><img src="https://img.shields.io/badge/license-GPLv3-blue"/></a>
 </p>
-Running a Hadoop cluster locally is a labor-intensive process, especially with **Kerberos** enabled. <br/> 
-This repository allows you to quickly launch only the necessary **Hadoop** components (HDFS, Hive, Spark) in Docker with full Kerberos support.<br/>
-All components can be run independently of each other.
+
+Running a **Hadoop** cluster locally is a labor-intensive process, especially with **Kerberos** enabled. <br/> 
+This repository allows you to quickly launch only the necessary **Hadoop** components (HDFS, Hive, YARN, Spark) in Docker with full Kerberos support.<br/>
+All components can be run independently of each other!
 
 ## Containers
 - **krb5** - Kerberos server
